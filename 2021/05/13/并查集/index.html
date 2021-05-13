@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="搜索算法; 边界条件; 算法模板," />
+  <meta name="keywords" content="算法模板," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="1 问题描述二分算法首先前提是数组是有序的，时间复杂度 O(log(n)), 难点主要在于边界条件的判断. 现在整理了一下边界条件以及模板代码.   区间取左闭右开区间. while 判断条件为 &lt; . mid &#x3D; left + (right - left) &#x2F; 2.  2 代码模板代码模板语言为Java, 尽量不使用语法糖，转换成其他语言方便. 1234567891011121314151">
+<meta name="description" content="并查集1 概念介绍在计算机科学中，并查集是一种树形结构，用来处理不交集(Disjoint Sets)得合并和查询问题[1]。并查集主要是有两个操作，依次是：  Find : 查找 Union ：合并  其中Find是判断给定元素属于哪一类别，常用一组类别中某个元素作为Root元素，表征这一类别，那么Find操作其实就是这个元素对应的Root值为多少。两个元素的Root值相同，则该两个元素为同一类别">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【算法模板】二分查找">
-<meta property="og:url" content="http://ddtr.github.io/2019/06/23/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/index.html">
+<meta property="og:title" content="【算法模板】并查集">
+<meta property="og:url" content="http://ddtr.github.io/2021/05/13/%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
 <meta property="og:site_name" content="蛋蛋奇妙屋">
-<meta property="og:description" content="1 问题描述二分算法首先前提是数组是有序的，时间复杂度 O(log(n)), 难点主要在于边界条件的判断. 现在整理了一下边界条件以及模板代码.   区间取左闭右开区间. while 判断条件为 &lt; . mid &#x3D; left + (right - left) &#x2F; 2.  2 代码模板代码模板语言为Java, 尽量不使用语法糖，转换成其他语言方便. 1234567891011121314151">
+<meta property="og:description" content="并查集1 概念介绍在计算机科学中，并查集是一种树形结构，用来处理不交集(Disjoint Sets)得合并和查询问题[1]。并查集主要是有两个操作，依次是：  Find : 查找 Union ：合并  其中Find是判断给定元素属于哪一类别，常用一组类别中某个元素作为Root元素，表征这一类别，那么Find操作其实就是这个元素对应的Root值为多少。两个元素的Root值相同，则该两个元素为同一类别">
 <meta property="og:locale">
-<meta property="article:published_time" content="2019-06-23T12:28:44.000Z">
-<meta property="article:modified_time" content="2021-05-13T15:38:53.656Z">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6589e90426f64025bcc73d18eb6224a0~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f0b7a849e2040e283822abb5cad189a~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d178ddaeafdf446690f8a776bbafba5f~tplv-k3u1fbpfcp-watermark.image">
+<meta property="article:published_time" content="2021-05-13T15:29:24.000Z">
+<meta property="article:modified_time" content="2021-05-13T15:38:13.704Z">
 <meta property="article:author" content="我家的猫叫蛋蛋">
-<meta property="article:tag" content="搜索算法; 边界条件; 算法模板">
+<meta property="article:tag" content="算法模板">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6589e90426f64025bcc73d18eb6224a0~tplv-k3u1fbpfcp-watermark.image">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://ddtr.github.io/2019/06/23/二分查找/"/>
+  <link rel="canonical" href="http://ddtr.github.io/2021/05/13/并查集/"/>
 
 
 
 
 
-  <title>【算法模板】二分查找 | 蛋蛋奇妙屋</title>
+  <title>【算法模板】并查集 | 蛋蛋奇妙屋</title>
   
 
 
@@ -243,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ddtr.github.io/2019/06/23/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+    <link itemprop="mainEntityOfPage" href="http://ddtr.github.io/2021/05/13/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -260,7 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【算法模板】二分查找</h1>
+          <h1 class="post-title" itemprop="name headline">【算法模板】并查集</h1>
         
 
         <div class="post-meta">
@@ -272,8 +276,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T20:28:44+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-05-13T23:29:24+08:00">
+                2021-05-13
               </time>
             
 
@@ -290,7 +294,7 @@
 
           
           
-             <span id="/2019/06/23/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="leancloud_visitors" data-flag-title="【算法模板】二分查找">
+             <span id="/2021/05/13/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="leancloud_visitors" data-flag-title="【算法模板】并查集">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -321,21 +325,19 @@
       
 
       
-        <h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h1><p>二分算法首先前提是数组是<code>有序</code>的，时间复杂度 <code>O(log(n))</code>, 难点主要在于边界条件的判断. 现在整理了一下边界条件以及模板代码. </p>
+        <h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><h2 id="1-概念介绍"><a href="#1-概念介绍" class="headerlink" title="1 概念介绍"></a>1 概念介绍</h2><p>在计算机科学中，并查集是一种树形结构，用来处理不交集(Disjoint Sets)得合并和查询问题[1]。并查集主要是有两个操作，依次是：</p>
 <ul>
-<li>区间取左闭右开区间.</li>
-<li>while 判断条件为 &lt; .</li>
-<li>mid = left + (right - left) / 2.</li>
+<li>Find : 查找</li>
+<li>Union ：合并</li>
 </ul>
-<h1 id="2-代码模板"><a href="#2-代码模板" class="headerlink" title="2 代码模板"></a>2 代码模板</h1><p>代码模板语言为Java, 尽量不使用语法糖，转换成其他语言方便.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public int binarySearch (int[] arr, int target) &#123;</span><br><span class="line">    int left = 0;</span><br><span class="line">    int right = arr.length; // 这里取不到right, 为开区间</span><br><span class="line">    int mid = 0;</span><br><span class="line">    while (left &lt; right) &#123;</span><br><span class="line">        mid = left + (right - left) / 2;</span><br><span class="line">        if (arr[mid] == target) &#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125;else if (arr[mid] &gt; target) &#123;</span><br><span class="line">            right = mid; // 以递增为例，缩小查找区间至[left, mid)</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            left = mid + 1; // [mid + 1, right)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中Find是判断给定元素属于哪一类别，常用一组类别中某个元素作为Root元素，表征这一类别，那么Find操作其实就是这个元素对应的Root值为多少。两个元素的Root值相同，则该两个元素为同一类别。<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6589e90426f64025bcc73d18eb6224a0~tplv-k3u1fbpfcp-watermark.image"><br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f0b7a849e2040e283822abb5cad189a~tplv-k3u1fbpfcp-watermark.image"><br>在构建并查集时，会遇到将两个类别合并为一个类别，即为Union。按上述对于Find操作的描述，即将原两个类别中所有元素对应的Root值改成同一值。</p>
+<h2 id="2-代码模板"><a href="#2-代码模板" class="headerlink" title="2 代码模板"></a>2 代码模板</h2><h3 id="2-1-朴素并查集"><a href="#2-1-朴素并查集" class="headerlink" title="2.1 朴素并查集"></a>2.1 朴素并查集</h3><p>不考虑效率，从定义上实现并查集Find和Union两个操作。核心点就是用一个p数组维护该元素的父节点元素值或Root值(<code>路径压缩</code>)，当一个元素的p值为其本身时，则该节点为Root节点。<br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d178ddaeafdf446690f8a776bbafba5f~tplv-k3u1fbpfcp-watermark.image"><br>其中p值为元素对应的Root时并查集效率<code>更高</code>，以下模板给出了这种情况下的算法实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MakeSet</span><span class="params">(<span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 初始化并查集，将每个元素的p值设置为其本身</span></span><br><span class="line">    <span class="comment">// 假设节点值是1~size(含size)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= size; i++) &#123;</span><br><span class="line">        p[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 判断元素n的类别，即查找元素n的Root元素值</span></span><br><span class="line">    <span class="keyword">if</span> (p[n] != n) &#123;</span><br><span class="line">        p[n] = <span class="built_in">Find</span>(p[n]); <span class="comment">// 非Root节点，继续向上查找，并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 将元素n和元素m所在类别合并</span></span><br><span class="line">    <span class="comment">// 只需将n和m中的一个元素的Root指向另一个元素的Root</span></span><br><span class="line">    <span class="keyword">int</span> rootA = <span class="built_in">Find</span>(n);</span><br><span class="line">    <span class="keyword">int</span> rootB = <span class="built_in">Find</span>(m);</span><br><span class="line">    p[rootA] = rootB;  <span class="comment">// n的Root指向m的Root</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="3-相关例题"><a href="#3-相关例题" class="headerlink" title="3 相关例题"></a>3 相关例题</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/" title="34">LeetCode 34. Find First and Last Position of Element in Sorted Array</a></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sqrtx/description/" title="69">LeetCode 69. Sqrt(x)</a></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-a-2d-matrix/description/" title="74">LeetCode 74. Search a 2D Matrix</a></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/" title="153">LeetCode 153. Find Minimum in Rotated Sorted Array</a></li>
-</ul>
+<h3 id="2-2-维护元素集Size的并查集"><a href="#2-2-维护元素集Size的并查集" class="headerlink" title="2.2 维护元素集Size的并查集"></a>2.2 维护元素集Size的并查集</h3><p>与朴素并查集算法实现不用的是，这里维护了一个size数组保存每个类别中的当前的元素数量，预设只有Root节点的size数组值才有效。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MakeSet</span><span class="params">(<span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 初始化并查集，将每个元素的p值设置为其本身</span></span><br><span class="line">    <span class="comment">// 假设节点值是1~size(含size)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= size; i++) &#123;</span><br><span class="line">        p[i] = i;</span><br><span class="line">        <span class="comment">// ! 增加size数组</span></span><br><span class="line">        size[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 判断元素n的类别，即查找元素n的Root元素值</span></span><br><span class="line">    <span class="comment">// ! Find操作是不需更新size数组</span></span><br><span class="line">    <span class="keyword">if</span> (p[n] != n) &#123;</span><br><span class="line">        p[n] = <span class="built_in">Find</span>(p[n]); <span class="comment">// 非Root节点，继续向上查找，并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 将元素n和元素m所在类别合并</span></span><br><span class="line">    <span class="comment">// 只需将n和m中的一个元素的Root指向另一个元素的Root</span></span><br><span class="line">    <span class="keyword">int</span> rootA = <span class="built_in">Find</span>(n);</span><br><span class="line">    <span class="keyword">int</span> rootB = <span class="built_in">Find</span>(m);</span><br><span class="line">    p[rootA] = rootB;  <span class="comment">// n的Root指向m的Root</span></span><br><span class="line">    <span class="comment">// ! rootB为新的Root, 只需更新rootB的size值</span></span><br><span class="line">    size[rootB] += size[rootA];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="相关leetcode例题"><a href="#相关leetcode例题" class="headerlink" title="相关leetcode例题"></a>相关leetcode例题</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/tag/union-find/">LeetCode并查集专题</a></p>
+<p>[1] <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B9%B6%E6%9F%A5%E9%9B%86">并查集-维基百科</a></p>
 
       
     </div>
@@ -353,7 +355,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95-%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6-%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" rel="tag"># 搜索算法; 边界条件; 算法模板</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" rel="tag"># 算法模板</a>
           
         </div>
       
@@ -366,14 +368,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2021/05/13/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="next" title="【算法模板】快速排序">
+                <i class="fa fa-chevron-left"></i> 【算法模板】快速排序
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/24/%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/" rel="prev" title="电子书资源分享（持续更新...)">
-                电子书资源分享（持续更新...) <i class="fa fa-chevron-right"></i>
+              <a href="/2021/05/13/%E3%80%8AMore-Effective-C-%E3%80%8B-%E5%9F%BA%E7%A1%80%E8%AE%AE%E9%A2%98/" rel="prev" title="【读书笔记】《More Effective C++》- 基础议题">
+                【读书笔记】《More Effective C++》- 基础议题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -517,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">1 问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">2 代码模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%9B%B8%E5%85%B3%E4%BE%8B%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">3 相关例题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">1 概念介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.2.</span> <span class="nav-text">2 代码模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%9C%B4%E7%B4%A0%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 朴素并查集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%BB%B4%E6%8A%A4%E5%85%83%E7%B4%A0%E9%9B%86Size%E7%9A%84%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 维护元素集Size的并查集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3leetcode%E4%BE%8B%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">相关leetcode例题</span></a></li></ol></li></ol></div>
             
 
           </div>
