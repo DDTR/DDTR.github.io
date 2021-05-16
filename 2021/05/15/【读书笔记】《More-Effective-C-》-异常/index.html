@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="面试题目总结;," />
+  <meta name="keywords" content="读书笔记," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Hash 算法介绍一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生 解决Hash 碰撞的常用方法开放定址法（再散列法）当关键字key的Hash 地址p &#x3D; H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以p 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi. 1Hi &#x3D; (H(key) + di) % m, i &#x3D;">
+<meta name="description" content="《More Effective C++》读书笔记异常条款9： 利用destructors避免泄漏资源理解: 将一个对象存放在必须被自动释放的的资源里，并依赖该对象的destructor释放，可有效避免出现exceptions发生资源泄漏。例如可用智能指针auto_ptr指向创建的对象，实现这一设计。 条款10: 在constructors内阻止资源泄漏（resource leak）理解: 论述如何">
 <meta property="og:type" content="article">
-<meta property="og:title" content="哈希算法">
-<meta property="og:url" content="http://ddtr.github.io/2019/08/05/%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="【读书笔记】《More Effective C++》- 异常">
+<meta property="og:url" content="http://ddtr.github.io/2021/05/15/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8AMore-Effective-C-%E3%80%8B-%E5%BC%82%E5%B8%B8/index.html">
 <meta property="og:site_name" content="蛋蛋奇妙屋">
-<meta property="og:description" content="Hash 算法介绍一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生 解决Hash 碰撞的常用方法开放定址法（再散列法）当关键字key的Hash 地址p &#x3D; H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以p 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi. 1Hi &#x3D; (H(key) + di) % m, i &#x3D;">
+<meta property="og:description" content="《More Effective C++》读书笔记异常条款9： 利用destructors避免泄漏资源理解: 将一个对象存放在必须被自动释放的的资源里，并依赖该对象的destructor释放，可有效避免出现exceptions发生资源泄漏。例如可用智能指针auto_ptr指向创建的对象，实现这一设计。 条款10: 在constructors内阻止资源泄漏（resource leak）理解: 论述如何">
 <meta property="og:locale">
-<meta property="article:published_time" content="2019-08-05T12:46:09.000Z">
-<meta property="article:modified_time" content="2021-05-12T16:15:46.590Z">
+<meta property="article:published_time" content="2021-05-15T08:07:59.000Z">
+<meta property="article:modified_time" content="2021-05-16T02:24:49.331Z">
 <meta property="article:author" content="我家的猫叫蛋蛋">
-<meta property="article:tag" content="面试题目总结;">
+<meta property="article:tag" content="读书笔记">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ddtr.github.io/2019/08/05/哈希算法/"/>
+  <link rel="canonical" href="http://ddtr.github.io/2021/05/15/【读书笔记】《More-Effective-C-》-异常/"/>
 
 
 
 
 
-  <title>哈希算法 | 蛋蛋奇妙屋</title>
+  <title>【读书笔记】《More Effective C++》- 异常 | 蛋蛋奇妙屋</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ddtr.github.io/2019/08/05/%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://ddtr.github.io/2021/05/15/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8AMore-Effective-C-%E3%80%8B-%E5%BC%82%E5%B8%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">哈希算法</h1>
+          <h1 class="post-title" itemprop="name headline">【读书笔记】《More Effective C++》- 异常</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T20:46:09+08:00">
-                2019-08-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-15T16:07:59+08:00">
+                2021-05-15
               </time>
             
 
@@ -310,7 +310,7 @@
 
           
           
-             <span id="/2019/08/05/%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95/" class="leancloud_visitors" data-flag-title="哈希算法">
+             <span id="/2021/05/15/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8AMore-Effective-C-%E3%80%8B-%E5%BC%82%E5%B8%B8/" class="leancloud_visitors" data-flag-title="【读书笔记】《More Effective C++》- 异常">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -372,17 +372,20 @@
       
 
       
-        <h1 id="Hash-算法介绍"><a href="#Hash-算法介绍" class="headerlink" title="Hash 算法介绍"></a>Hash 算法介绍</h1><p>一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生</p>
-<h1 id="解决Hash-碰撞的常用方法"><a href="#解决Hash-碰撞的常用方法" class="headerlink" title="解决Hash 碰撞的常用方法"></a>解决Hash 碰撞的常用方法</h1><h2 id="开放定址法（再散列法）"><a href="#开放定址法（再散列法）" class="headerlink" title="开放定址法（再散列法）"></a>开放定址法（再散列法）</h2><p>当关键字key的Hash 地址p = H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以<strong>p</strong> 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi = (H(key) + di) % m, i = 1, 2, ..., n</span><br></pre></td></tr></table></figure>
+        <h1 id="《More-Effective-C-》读书笔记"><a href="#《More-Effective-C-》读书笔记" class="headerlink" title="《More Effective C++》读书笔记"></a>《More Effective C++》读书笔记</h1><h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="条款9：-利用destructors避免泄漏资源"><a href="#条款9：-利用destructors避免泄漏资源" class="headerlink" title="条款9： 利用destructors避免泄漏资源"></a>条款9： 利用destructors避免泄漏资源</h3><p>理解: 将一个对象存放在必须被自动释放的的资源里，并依赖该对象的destructor释放，可有效避免出现exceptions发生资源泄漏。<br>例如可用智能指针auto_ptr指向创建的对象，实现这一设计。</p>
+<h3 id="条款10-在constructors内阻止资源泄漏（resource-leak）"><a href="#条款10-在constructors内阻止资源泄漏（resource-leak）" class="headerlink" title="条款10: 在constructors内阻止资源泄漏（resource leak）"></a>条款10: 在constructors内阻止资源泄漏（resource leak）</h3><p>理解: 论述如何处理在构造函数中发生异常而导致的资源泄漏，即用auto_ptr对象代替pointer class members对象，<strong>无须</strong>在析构函数中手动释放资源。</p>
+<h3 id="条款11-禁止异常（exceptions）流出destructors之外"><a href="#条款11-禁止异常（exceptions）流出destructors之外" class="headerlink" title="条款11: 禁止异常（exceptions）流出destructors之外"></a>条款11: 禁止异常（exceptions）流出destructors之外</h3><p>理解: 论述了析构函数内发生的异常必须要在其函数内被捕捉到的两个原因：</p>
 <ul>
-<li>线性探测再散列<br>发生Hash 碰撞时顺序查看表中下一单元，直到找到一个空单元或查遍全表.</li>
-<li>二次探测再散列<br>发生Hash 碰撞时在表的左右跳跃式探测</li>
-<li>伪随机探测再散列<br>依据产生的伪随机序列以给定随机数为起点做探测.  </li>
+<li>（1）可以避免terminate函数在exceptions传播过程中的栈展开（stack-unwinding）机制中被调用。如果控制权基于exception的因素离开destructor，而此时正有另一个exception处于作用状态，c++会调用terminate函数。</li>
+<li>（2）可以确保destructor完成其应该完成的所有事情。<h3 id="条款12-了解“抛出一个exception”与“传递一个参数”或“调用一个虚函数”之间的差异。"><a href="#条款12-了解“抛出一个exception”与“传递一个参数”或“调用一个虚函数”之间的差异。" class="headerlink" title="条款12: 了解“抛出一个exception”与“传递一个参数”或“调用一个虚函数”之间的差异。"></a>条款12: 了解“抛出一个exception”与“传递一个参数”或“调用一个虚函数”之间的差异。</h3>理解: 主要有三个差异</li>
+<li>（1）exception objects总是会被复制，如果是以by value方式捕捉，会被复制两次。</li>
+<li>（2）“被抛出成为exception”的对象，允许的类型转换比“传递到函数去”的对象少。“exception与catch子句相匹配”的过程中，只支持两种类型转换，一种是继承体系中的类转换（基类可以捕捉到子类），二是从一个“有型指针”转为“无型指针”（针对const void*指针设计的catch子句，可以捕捉到任何指针类型的exception）。</li>
+<li>（3）catch 子句匹配的机制是“first fit”。<h3 id="条款13-以by-reference方式捕捉exceptions"><a href="#条款13-以by-reference方式捕捉exceptions" class="headerlink" title="条款13: 以by reference方式捕捉exceptions"></a>条款13: 以by reference方式捕捉exceptions</h3>理解: 论述了by pointer，by value以及by reference三种方式传递异常给catch的优劣，最后得出结论是以<strong>by reference</strong>方式，原因概要如下：</li>
+<li>（1）以by pointer方式传递需要考虑传递过来的对象的删除问题，比较难处理，有的时候需要删除，有的时候不需要。</li>
+<li>（2）以by value方式会出现<strong>切割</strong>问题，即用基类捕捉到了子类的异常对象，会丢失子类的派生成分，其实就是变成了子类对象。在调用虚函数的时候，仍然只会调用基类的函数而不是子类的函数。<h3 id="条款14-明智运用exception-spectifications"><a href="#条款14-明智运用exception-spectifications" class="headerlink" title="条款14: 明智运用exception spectifications"></a>条款14: 明智运用exception spectifications</h3>理解: exceptions specifications不太好使。<h3 id="条款15-了解异常处理（exception-handling）的成本"><a href="#条款15-了解异常处理（exception-handling）的成本" class="headerlink" title="条款15: 了解异常处理（exception handling）的成本"></a>条款15: 了解异常处理（exception handling）的成本</h3>理解: </li>
+<li>只要能够不支持exception，编译器便不支持。</li>
+<li>斤可能不用try语句块和exception specification，因为那样会使代码膨胀。</li>
 </ul>
-<h2 id="再Hash-法"><a href="#再Hash-法" class="headerlink" title="再Hash 法"></a>再Hash 法</h2><p>构造多个Hash 函数，发生碰撞时换用Hash 函数，直到冲突不再发生.</p>
-<h2 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h2><p>将Hash 地址相同的元素构成一个称为同义词链的单链表.</p>
-<h2 id="建立公共溢出区"><a href="#建立公共溢出区" class="headerlink" title="建立公共溢出区"></a>建立公共溢出区</h2><p>将Hash 表分为基本表和溢出表两部分，与基本表冲突的元素放入溢出表.</p>
 
       
     </div>
@@ -400,7 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag"># 面试题目总结;</a>
+            <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
           
         </div>
       
@@ -413,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="next" title="排序算法总结">
-                <i class="fa fa-chevron-left"></i> 排序算法总结
+              <a href="/2021/05/13/%E3%80%8AMore-Effective-C-%E3%80%8B-%E6%93%8D%E4%BD%9C%E7%AC%A6/" rel="next" title="【读书笔记】《More Effective C++》- 操作符">
+                <i class="fa fa-chevron-left"></i> 【读书笔记】《More Effective C++》- 操作符
               </a>
             
           </div>
@@ -422,10 +425,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/15/hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/" rel="prev" title="hexo 常用命令手册">
-                hexo 常用命令手册 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -568,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hash-%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">Hash 算法介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3Hash-%E7%A2%B0%E6%92%9E%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决Hash 碰撞的常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%94%BE%E5%AE%9A%E5%9D%80%E6%B3%95%EF%BC%88%E5%86%8D%E6%95%A3%E5%88%97%E6%B3%95%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">开放定址法（再散列法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8DHash-%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">再Hash 法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">链地址法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA"><span class="nav-number">2.4.</span> <span class="nav-text">建立公共溢出区</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8AMore-Effective-C-%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">《More Effective C++》读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">1.1.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE9%EF%BC%9A-%E5%88%A9%E7%94%A8destructors%E9%81%BF%E5%85%8D%E6%B3%84%E6%BC%8F%E8%B5%84%E6%BA%90"><span class="nav-number">1.1.1.</span> <span class="nav-text">条款9： 利用destructors避免泄漏资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE10-%E5%9C%A8constructors%E5%86%85%E9%98%BB%E6%AD%A2%E8%B5%84%E6%BA%90%E6%B3%84%E6%BC%8F%EF%BC%88resource-leak%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">条款10: 在constructors内阻止资源泄漏（resource leak）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE11-%E7%A6%81%E6%AD%A2%E5%BC%82%E5%B8%B8%EF%BC%88exceptions%EF%BC%89%E6%B5%81%E5%87%BAdestructors%E4%B9%8B%E5%A4%96"><span class="nav-number">1.1.3.</span> <span class="nav-text">条款11: 禁止异常（exceptions）流出destructors之外</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE12-%E4%BA%86%E8%A7%A3%E2%80%9C%E6%8A%9B%E5%87%BA%E4%B8%80%E4%B8%AAexception%E2%80%9D%E4%B8%8E%E2%80%9C%E4%BC%A0%E9%80%92%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0%E2%80%9D%E6%88%96%E2%80%9C%E8%B0%83%E7%94%A8%E4%B8%80%E4%B8%AA%E8%99%9A%E5%87%BD%E6%95%B0%E2%80%9D%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE%E5%BC%82%E3%80%82"><span class="nav-number">1.1.4.</span> <span class="nav-text">条款12: 了解“抛出一个exception”与“传递一个参数”或“调用一个虚函数”之间的差异。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE13-%E4%BB%A5by-reference%E6%96%B9%E5%BC%8F%E6%8D%95%E6%8D%89exceptions"><span class="nav-number">1.1.5.</span> <span class="nav-text">条款13: 以by reference方式捕捉exceptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE14-%E6%98%8E%E6%99%BA%E8%BF%90%E7%94%A8exception-spectifications"><span class="nav-number">1.1.6.</span> <span class="nav-text">条款14: 明智运用exception spectifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE15-%E4%BA%86%E8%A7%A3%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%EF%BC%88exception-handling%EF%BC%89%E7%9A%84%E6%88%90%E6%9C%AC"><span class="nav-number">1.1.7.</span> <span class="nav-text">条款15: 了解异常处理（exception handling）的成本</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
