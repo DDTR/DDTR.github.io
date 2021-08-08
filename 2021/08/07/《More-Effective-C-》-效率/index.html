@@ -87,7 +87,7 @@
 <meta property="og:description" content="《More-Effective-C++》读书笔记效率条款16 谨记80-20法则这一条款说明影响程序运行效率的代码一般只占总代码的20%，使用程序分析器分析出造成性能瓶颈的对应代码。 条款17 考虑使用lazy evaluation（缓式评估）缓式评估的思想是延缓运算，知道必须要的时候。对于你的软件被要求执行某些计算，而那么计算其实可以避免的场景，缓式评估有一定效率提升。书中举例说明了缓式评估可以">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-08-07T13:50:17.000Z">
-<meta property="article:modified_time" content="2021-08-08T15:38:46.742Z">
+<meta property="article:modified_time" content="2021-08-08T15:42:24.397Z">
 <meta property="article:author" content="我家的猫叫蛋蛋">
 <meta property="article:tag" content="读书笔记">
 <meta name="twitter:card" content="summary">
@@ -378,12 +378,21 @@
 <li><code>Reference Counting(引用计数)</code>: 避免非必要的对象复制。</li>
 <li><code>区分读与写</code>: 写操作比读操作更耗时，用缓式评估和proxy classes来区分operator[]的读与写操作。</li>
 <li><code>Lazy Fetching(缓式取出)</code>: 针对读取数据库数据并实例化大对象。这样一个大数据对象往往比较耗时，则一开始只产生该对象的“外壳”，不从数据库中读取数据，直到某个字段被真正需要。</li>
-<li><code>Lazy Expression Evaluation(表达式缓评估)</code>: 避免非必要的数值计算。<h3 id="条款18-分期摊还预期的计算成本"><a href="#条款18-分期摊还预期的计算成本" class="headerlink" title="条款18 分期摊还预期的计算成本"></a>条款18 分期摊还预期的计算成本</h3>与条款17不同，这一条为超急评估(over-eager evaluation)，在被要求之前就先把事情做下去。针对的场景是<strong>如果你的程序常常会用到某个计算，可以设计一份数据结构以便能够极有效率的处理需求，常见的做法有caching（数值缓存）和Prefetching(预先取出）。</strong><h3 id="条款19-了解临时对象的来源"><a href="#条款19-了解临时对象的来源" class="headerlink" title="条款19 了解临时对象的来源"></a>条款19 了解临时对象的来源</h3>这里说的临时对象是指没有命名的<code>non-head object</code>，此类的对象比较隐蔽，其对应的构造和析构函数也会对你的程序性能造成影响。书中给出了生成临时对象的常见两种场景：</li>
-<li>函数调用时的隐形类型转换</li>
-<li>函数返回值为一个对象(by value)，如operator+。<h3 id="条款20-协助完成”返回值优化-RVO-”"><a href="#条款20-协助完成”返回值优化-RVO-”" class="headerlink" title="条款20 协助完成”返回值优化(RVO)”"></a>条款20 协助完成”返回值优化(RVO)”</h3>应尽可能避免返回对象，必须要返回时以返回constructor arguements取代对象。<br>eg.<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational&amp; lhs,</span><br><span class="line">                         <span class="keyword">const</span> Rational&amp; rhs)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Rational</span>(lhs.<span class="built_in">numerator</span>() * rhs.<span class="built_in">numerator</span>(),</span><br><span class="line">                    lhs.<span class="built_in">denominator</span>() * rhs.<span class="built_in">denominator</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="条款21-利用重载技术-overload-便面隐式类型转换-implict-type-coversions"><a href="#条款21-利用重载技术-overload-便面隐式类型转换-implict-type-coversions" class="headerlink" title="条款21 利用重载技术(overload)便面隐式类型转换(implict type coversions)"></a>条款21 利用重载技术(overload)便面隐式类型转换(implict type coversions)</h3>隐式类型转换应能避免就避免，多重载几个函数以支持多种合法type，减少隐式类型转换发生次数。<h3 id="条款22-考虑以操作符复合形式-op-取代其独身形式-op"><a href="#条款22-考虑以操作符复合形式-op-取代其独身形式-op" class="headerlink" title="条款22 考虑以操作符复合形式(op=)取代其独身形式(op)"></a>条款22 考虑以操作符复合形式(op=)取代其独身形式(op)</h3>以op=为基础实现op。<h3 id="条款23-考虑使用其他程序库"><a href="#条款23-考虑使用其他程序库" class="headerlink" title="条款23 考虑使用其他程序库"></a>条款23 考虑使用其他程序库</h3>根据场景以及性能瓶颈选择合适的library。<h3 id="条款24-了解virtual-functions-multiple-inheritance-virtual-base-classes-runtime-type-identification的成本"><a href="#条款24-了解virtual-functions-multiple-inheritance-virtual-base-classes-runtime-type-identification的成本" class="headerlink" title="条款24 了解virtual functions, multiple inheritance, virtual base classes, runtime type identification的成本"></a>条款24 了解virtual functions, multiple inheritance, virtual base classes, runtime type identification的成本</h3></li>
+<li><code>Lazy Expression Evaluation(表达式缓评估)</code>: 避免非必要的数值计算。</li>
 </ul>
-<table>
+<h3 id="条款18-分期摊还预期的计算成本"><a href="#条款18-分期摊还预期的计算成本" class="headerlink" title="条款18 分期摊还预期的计算成本"></a>条款18 分期摊还预期的计算成本</h3><p>与条款17不同，这一条为超急评估(over-eager evaluation)，在被要求之前就先把事情做下去。针对的场景是<strong>如果你的程序常常会用到某个计算，可以设计一份数据结构以便能够极有效率的处理需求，常见的做法有caching（数值缓存）和Prefetching(预先取出）。</strong></p>
+<h3 id="条款19-了解临时对象的来源"><a href="#条款19-了解临时对象的来源" class="headerlink" title="条款19 了解临时对象的来源"></a>条款19 了解临时对象的来源</h3><p>这里说的临时对象是指没有命名的<code>non-head object</code>，此类的对象比较隐蔽，其对应的构造和析构函数也会对你的程序性能造成影响。书中给出了生成临时对象的常见两种场景：</p>
+<ul>
+<li>函数调用时的隐形类型转换</li>
+<li>函数返回值为一个对象(by value)，如operator+。</li>
+</ul>
+<h3 id="条款20-协助完成”返回值优化-RVO-”"><a href="#条款20-协助完成”返回值优化-RVO-”" class="headerlink" title="条款20 协助完成”返回值优化(RVO)”"></a>条款20 协助完成”返回值优化(RVO)”</h3><p>应尽可能避免返回对象，必须要返回时以返回constructor arguements取代对象。<br>eg.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational&amp; lhs,</span><br><span class="line">                         <span class="keyword">const</span> Rational&amp; rhs)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Rational</span>(lhs.<span class="built_in">numerator</span>() * rhs.<span class="built_in">numerator</span>(),</span><br><span class="line">                    lhs.<span class="built_in">denominator</span>() * rhs.<span class="built_in">denominator</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="条款21-利用重载技术-overload-便面隐式类型转换-implict-type-coversions"><a href="#条款21-利用重载技术-overload-便面隐式类型转换-implict-type-coversions" class="headerlink" title="条款21 利用重载技术(overload)便面隐式类型转换(implict type coversions)"></a>条款21 利用重载技术(overload)便面隐式类型转换(implict type coversions)</h3><p>隐式类型转换应能避免就避免，多重载几个函数以支持多种合法type，减少隐式类型转换发生次数。</p>
+<h3 id="条款22-考虑以操作符复合形式-op-取代其独身形式-op"><a href="#条款22-考虑以操作符复合形式-op-取代其独身形式-op" class="headerlink" title="条款22 考虑以操作符复合形式(op=)取代其独身形式(op)"></a>条款22 考虑以操作符复合形式(op=)取代其独身形式(op)</h3><p>以op=为基础实现op。</p>
+<h3 id="条款23-考虑使用其他程序库"><a href="#条款23-考虑使用其他程序库" class="headerlink" title="条款23 考虑使用其他程序库"></a>条款23 考虑使用其他程序库</h3><p>根据场景以及性能瓶颈选择合适的library。</p>
+<h3 id="条款24-了解virtual-functions-multiple-inheritance-virtual-base-classes-runtime-type-identification的成本"><a href="#条款24-了解virtual-functions-multiple-inheritance-virtual-base-classes-runtime-type-identification的成本" class="headerlink" title="条款24 了解virtual functions, multiple inheritance, virtual base classes, runtime type identification的成本"></a>条款24 了解virtual functions, multiple inheritance, virtual base classes, runtime type identification的成本</h3><table>
 <thead>
 <tr>
 <th>性质</th>
