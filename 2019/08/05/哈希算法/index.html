@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="Hash 算法介绍一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生 解决Hash 碰撞的常用方法开放定址法（再散列法）当关键字key的Hash 地址p &#x3D; H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以p 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi. 1Hi &#x3D; (H(key) + di) % m, i &#x3D;">
+<meta name="description" content="Hash 算法介绍一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生 解决Hash 碰撞的常用方法开放定址法（再散列法）当关键字key的Hash 地址p &#x3D; H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以p 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi. 1Hi &#x3D; (H(key) + di) % m,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【算法模版】哈希算法">
 <meta property="og:url" content="http://ddtr.github.io/2019/08/05/%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="蛋蛋奇妙屋">
-<meta property="og:description" content="Hash 算法介绍一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生 解决Hash 碰撞的常用方法开放定址法（再散列法）当关键字key的Hash 地址p &#x3D; H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以p 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi. 1Hi &#x3D; (H(key) + di) % m, i &#x3D;">
+<meta property="og:description" content="Hash 算法介绍一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生 解决Hash 碰撞的常用方法开放定址法（再散列法）当关键字key的Hash 地址p &#x3D; H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以p 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi. 1Hi &#x3D; (H(key) + di) % m,">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-08-05T12:46:09.000Z">
 <meta property="article:modified_time" content="2022-02-09T12:44:53.865Z">
@@ -146,7 +146,7 @@
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -373,12 +373,12 @@
 
       
         <h1 id="Hash-算法介绍"><a href="#Hash-算法介绍" class="headerlink" title="Hash 算法介绍"></a>Hash 算法介绍</h1><p>一种映射关系，关键字到存储地址的映射，会存在hash 碰撞的情况发生</p>
-<h1 id="解决Hash-碰撞的常用方法"><a href="#解决Hash-碰撞的常用方法" class="headerlink" title="解决Hash 碰撞的常用方法"></a>解决Hash 碰撞的常用方法</h1><h2 id="开放定址法（再散列法）"><a href="#开放定址法（再散列法）" class="headerlink" title="开放定址法（再散列法）"></a>开放定址法（再散列法）</h2><p>当关键字key的Hash 地址p = H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以<strong>p</strong> 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi.</p>
+<h1 id="解决Hash-碰撞的常用方法"><a href="#解决Hash-碰撞的常用方法" class="headerlink" title="解决Hash 碰撞的常用方法"></a>解决Hash 碰撞的常用方法</h1><h2 id="开放定址法（再散列法）"><a href="#开放定址法（再散列法）" class="headerlink" title="开放定址法（再散列法）"></a>开放定址法（再散列法）</h2><p>当关键字key的Hash 地址p &#x3D; H(key) 冲突时， 以p 为基础产生另一个Hash 地址p1，如果p1 仍冲突，再以<strong>p</strong> 为基础产生一个Hash 地址p2, 直到产生不冲突的Hash 地址pi.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi = (H(key) + di) % m, i = 1, 2, ..., n</span><br></pre></td></tr></table></figure>
 <ul>
 <li>线性探测再散列<br>发生Hash 碰撞时顺序查看表中下一单元，直到找到一个空单元或查遍全表.</li>
 <li>二次探测再散列<br>发生Hash 碰撞时在表的左右跳跃式探测</li>
-<li>伪随机探测再散列<br>依据产生的伪随机序列以给定随机数为起点做探测.  </li>
+<li>伪随机探测再散列<br>依据产生的伪随机序列以给定随机数为起点做探测.</li>
 </ul>
 <h2 id="再Hash-法"><a href="#再Hash-法" class="headerlink" title="再Hash 法"></a>再Hash 法</h2><p>构造多个Hash 函数，发生碰撞时换用Hash 函数，直到冲突不再发生.</p>
 <h2 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h2><p>将Hash 地址相同的元素构成一个称为同义词链的单链表.</p>

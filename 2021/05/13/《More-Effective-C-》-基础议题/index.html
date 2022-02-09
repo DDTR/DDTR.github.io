@@ -146,7 +146,7 @@
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -375,7 +375,7 @@
         <h1 id="《More-Effective-C-》读书笔记"><a href="#《More-Effective-C-》读书笔记" class="headerlink" title="《More Effective C++》读书笔记"></a>《More Effective C++》读书笔记</h1><h2 id="基础议题"><a href="#基础议题" class="headerlink" title="基础议题"></a>基础议题</h2><h3 id="条款1-仔细区别pointer和references"><a href="#条款1-仔细区别pointer和references" class="headerlink" title="条款1 : 仔细区别pointer和references"></a>条款1 : 仔细区别pointer和references</h3><p>理解：指针和引用有相似的地方，都可以间接参考操作其他对象，但因二者存在区别，而这区别也是使用指针还是引用时的重要依据。详细展开来说如下：</p>
 <ul>
 <li>引用<strong>必须初始化</strong>，并且<strong>总是指向</strong>最初赋值的那个对象，不能改变。<br>这一点引用限制比指针多，指针可赋值为null,可改变指向，更加灵活。除非程序中指向性不变（合适引用），否则指针的灵活性更高，更加适合。</li>
-<li>另外一种书中提到实现某些操作符，特别地必须返回某种<strong>能够被当作assignment赋值对象地东西</strong>,以<code>[]</code>为例，该种情况下使用引用。<br>个人理解该种情况区分度较高，若是<code>[]</code>返回值为指针类型，则会出现如下情况<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">num</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [] 返回值类型为引用，目前stl实现</span></span><br><span class="line">num[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [] 返回值类型为指针, 会造成这是个指针vector的误解</span></span><br><span class="line">*num[<span class="number">0</span>] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+<li>另外一种书中提到实现某些操作符，特别地必须返回某种<strong>能够被当作assignment赋值对象地东西</strong>,以<code>[]</code>为例，该种情况下使用引用。<br>个人理解该种情况区分度较高，若是<code>[]</code>返回值为指针类型，则会出现如下情况<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">num</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [] 返回值类型为引用，目前stl实现</span></span><br><span class="line">num[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [] 返回值类型为指针, 会造成这是个指针vector的误解</span></span><br><span class="line">*num[<span class="number">0</span>] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="条款2-最好使用C-转型操作符"><a href="#条款2-最好使用C-转型操作符" class="headerlink" title="条款2 : 最好使用C++转型操作符"></a>条款2 : 最好使用C++转型操作符</h3><p>理解：编程中尽量不要使用类型转换，计算使用，也不用<code>C</code>格式的类型转换，即：<code>(type) expression</code><br>C++提供了四个新型转型操作符，使用方法为<code>xxx_cast&lt;type&gt;(expression)</code>：</p>
 <ul>
