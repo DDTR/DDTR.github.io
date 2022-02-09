@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="UML类图1 引言UML类图是软件方案设计中常用的一种方式，之前一直对于类之间的关系认识存在模糊。借着整理项目架构之便将该知识点规整之下。UML类图建模中类于类之间的关系有6种，按照关系从弱到强依次是依赖(Dependency)，关联(Association)，聚合(Aggregation)，组合(Composition)，实现(Realization)和泛化(Generlization)。 2">
+<meta name="description" content="UML类图1 引言UML类图是软件方案设计中常用的一种方式，之前一直对于类之间的关系认识存在模糊，借着整理项目架构之便将该知识点规整之下。UML类图建模中类于类之间的关系有6种，按照关系从弱到强依次是依赖(Dependency)，关联(Association)，聚合(Aggregation)，组合(Composition)，实现(Realization)和泛化(Generlization)。 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【随手记】UML类图">
 <meta property="og:url" content="http://ddtr.github.io/2022/02/08/UML%E7%B1%BB%E5%9B%BE/index.html">
 <meta property="og:site_name" content="蛋蛋奇妙屋">
-<meta property="og:description" content="UML类图1 引言UML类图是软件方案设计中常用的一种方式，之前一直对于类之间的关系认识存在模糊。借着整理项目架构之便将该知识点规整之下。UML类图建模中类于类之间的关系有6种，按照关系从弱到强依次是依赖(Dependency)，关联(Association)，聚合(Aggregation)，组合(Composition)，实现(Realization)和泛化(Generlization)。 2">
+<meta property="og:description" content="UML类图1 引言UML类图是软件方案设计中常用的一种方式，之前一直对于类之间的关系认识存在模糊，借着整理项目架构之便将该知识点规整之下。UML类图建模中类于类之间的关系有6种，按照关系从弱到强依次是依赖(Dependency)，关联(Association)，聚合(Aggregation)，组合(Composition)，实现(Realization)和泛化(Generlization)。 2">
 <meta property="og:locale">
-<meta property="og:image" content="http://ddtr.github.io/2022/02/08/UML%E7%B1%BB%E5%9B%BE/uml%E7%B1%BB%E5%9B%BE.png">
+<meta property="og:image" content="http://ddtr.github.io/source/uml%E7%B1%BB%E5%9B%BE.png">
 <meta property="article:published_time" content="2022-02-08T13:42:35.000Z">
-<meta property="article:modified_time" content="2022-02-08T14:55:32.520Z">
+<meta property="article:modified_time" content="2022-02-09T12:51:21.162Z">
 <meta property="article:author" content="我家的猫叫蛋蛋">
 <meta property="article:tag" content="随手记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ddtr.github.io/2022/02/08/UML%E7%B1%BB%E5%9B%BE/uml%E7%B1%BB%E5%9B%BE.png">
+<meta name="twitter:image" content="http://ddtr.github.io/source/uml%E7%B1%BB%E5%9B%BE.png">
 
 
 
@@ -374,7 +374,7 @@
       
 
       
-        <h1 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h1><h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h2><p>UML类图是软件方案设计中常用的一种方式，之前一直对于类之间的关系认识存在模糊。借着整理项目架构之便将该知识点规整之下。<br>UML类图建模中类于类之间的关系有<strong>6</strong>种，按照关系从弱到强依次是<code>依赖(Dependency)</code>，<code>关联(Association)</code>，<code>聚合(Aggregation)</code>，<code>组合(Composition)</code>，<code>实现(Realization)</code>和<code>泛化(Generlization)</code>。</p>
+        <h1 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h1><h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h2><p>UML类图是软件方案设计中常用的一种方式，之前一直对于类之间的关系认识存在模糊，借着整理项目架构之便将该知识点规整之下。<br>UML类图建模中类于类之间的关系有<strong>6</strong>种，按照关系从弱到强依次是<code>依赖(Dependency)</code>，<code>关联(Association)</code>，<code>聚合(Aggregation)</code>，<code>组合(Composition)</code>，<code>实现(Realization)</code>和<code>泛化(Generlization)</code>。</p>
 <h2 id="2-关系概述"><a href="#2-关系概述" class="headerlink" title="2 关系概述"></a>2 关系概述</h2><table>
 <thead>
 <tr>
@@ -420,14 +420,9 @@
 <td>继承</td>
 <td><strong>带三角箭头的实线</strong>，箭头指向父类，即A是父类，B是子类，箭头指向B</td>
 </tr>
-<tr>
-<td>备注 ： 箭头指向被继承（实现/拥有/使用）或部分的那个类</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<h2 id="3-图例"><a href="#3-图例" class="headerlink" title="3 图例"></a>3 图例</h2><p><img src="uml%E7%B1%BB%E5%9B%BE.png" alt="uml类图显示"></p>
+<p>备注 ： 箭头指向被继承（实现/拥有/使用）或部分的那个类</p>
+<h2 id="3-图例"><a href="#3-图例" class="headerlink" title="3 图例"></a>3 图例</h2><p><img src="/source/uml%E7%B1%BB%E5%9B%BE.png" alt="uml类图显示"></p>
 
       
     </div>
