@@ -2,10 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,11 +13,12 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"ddtr.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ddtr.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
   <meta name="description" content="《More-Effective-C++》读书笔记效率条款16 谨记80-20法则这一条款说明影响程序运行效率的代码一般只占总代码的20%，使用程序分析器分析出造成性能瓶颈的对应代码。 条款17 考虑使用lazy evaluation（缓式评估）缓式评估的思想是延缓运算，知道必须要的时候。对于你的软件被要求执行某些计算，而那么计算其实可以避免的场景，缓式评估有一定效率提升。书中举例说明了缓式评估可以">
 <meta property="og:type" content="article">
@@ -33,43 +33,72 @@
 <meta property="article:tag" content="读书笔记">
 <meta name="twitter:card" content="summary">
 
-
 <link rel="canonical" href="http://ddtr.github.io/2021/08/07/%E3%80%8AMore-Effective-C-%E3%80%8B-%E6%95%88%E7%8E%87/">
 
 
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://ddtr.github.io/2021/08/07/%E3%80%8AMore-Effective-C-%E3%80%8B-%E6%95%88%E7%8E%87/","path":"2021/08/07/《More-Effective-C-》-效率/","title":"【读书笔记】《More-Effective-C++》-效率"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>【读书笔记】《More-Effective-C++》-效率 | 蛋蛋奇妙屋</title>
+  <title>【读书笔记】《More-Effective-C++》-效率 | 蛋蛋奇妙屋</title>
   
 
 
 
 
 
+
   <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">蛋蛋奇妙屋</p>
-      <i class="logo-line"></i>
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蛋蛋奇妙屋</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
   </div>
 
@@ -82,95 +111,65 @@
 
 
 
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
 
 
 
 </div>
-        
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8AMore-Effective-C-%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">《More-Effective-C++》读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E7%8E%87"><span class="nav-number">1.1.</span> <span class="nav-text">效率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE16-%E8%B0%A8%E8%AE%B080-20%E6%B3%95%E5%88%99"><span class="nav-number">1.1.1.</span> <span class="nav-text">条款16 谨记80-20法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE17-%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8lazy-evaluation%EF%BC%88%E7%BC%93%E5%BC%8F%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">条款17 考虑使用lazy evaluation（缓式评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE18-%E5%88%86%E6%9C%9F%E6%91%8A%E8%BF%98%E9%A2%84%E6%9C%9F%E7%9A%84%E8%AE%A1%E7%AE%97%E6%88%90%E6%9C%AC"><span class="nav-number">1.1.3.</span> <span class="nav-text">条款18 分期摊还预期的计算成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE19-%E4%BA%86%E8%A7%A3%E4%B8%B4%E6%97%B6%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="nav-number">1.1.4.</span> <span class="nav-text">条款19 了解临时对象的来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE20-%E5%8D%8F%E5%8A%A9%E5%AE%8C%E6%88%90%E2%80%9D%E8%BF%94%E5%9B%9E%E5%80%BC%E4%BC%98%E5%8C%96-RVO-%E2%80%9D"><span class="nav-number">1.1.5.</span> <span class="nav-text">条款20 协助完成”返回值优化(RVO)”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE21-%E5%88%A9%E7%94%A8%E9%87%8D%E8%BD%BD%E6%8A%80%E6%9C%AF-overload-%E4%BE%BF%E9%9D%A2%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-implict-type-coversions"><span class="nav-number">1.1.6.</span> <span class="nav-text">条款21 利用重载技术(overload)便面隐式类型转换(implict type coversions)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE22-%E8%80%83%E8%99%91%E4%BB%A5%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%A4%8D%E5%90%88%E5%BD%A2%E5%BC%8F-op-x3D-%E5%8F%96%E4%BB%A3%E5%85%B6%E7%8B%AC%E8%BA%AB%E5%BD%A2%E5%BC%8F-op"><span class="nav-number">1.1.7.</span> <span class="nav-text">条款22 考虑以操作符复合形式(op&#x3D;)取代其独身形式(op)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE23-%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E5%BA%93"><span class="nav-number">1.1.8.</span> <span class="nav-text">条款23 考虑使用其他程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE24-%E4%BA%86%E8%A7%A3virtual-functions-multiple-inheritance-virtual-base-classes-runtime-type-identification%E7%9A%84%E6%88%90%E6%9C%AC"><span class="nav-number">1.1.9.</span> <span class="nav-text">条款24 了解virtual functions, multiple inheritance, virtual base classes, runtime type identification的成本</span></a></li></ol></li></ol></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">我家的猫叫蛋蛋</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">20</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
+  <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-    <div class="main-inner post posts-expand">
+          <div class="content post posts-expand">
+            
 
-
-  
-
-
-<div class="post-block">
+    
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://ddtr.github.io/2021/08/07/%E3%80%8AMore-Effective-C-%E3%80%8B-%E6%95%88%E7%8E%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/bigHead.jpg">
       <meta itemprop="name" content="我家的猫叫蛋蛋">
       <meta itemprop="description" content="">
     </span>
@@ -183,26 +182,24 @@
           【读书笔记】《More-Effective-C++》-效率
         </h1>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-08-07 21:50:17" itemprop="dateCreated datePublished" datetime="2021-08-07T21:50:17+08:00">2021-08-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-02-09 20:44:59" itemprop="dateModified" datetime="2022-02-09T20:44:59+08:00">2022-02-09</time>
-    </span>
+              <time title="创建时间：2021-08-07 21:50:17" itemprop="dateCreated datePublished" datetime="2021-08-07T21:50:17+08:00">2021-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-09 20:44:59" itemprop="dateModified" datetime="2022-02-09T20:44:59+08:00">2022-02-09</time>
+              </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -211,6 +208,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
+
+      
         <h1 id="《More-Effective-C-》读书笔记"><a href="#《More-Effective-C-》读书笔记" class="headerlink" title="《More-Effective-C++》读书笔记"></a>《More-Effective-C++》读书笔记</h1><h2 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h2><h3 id="条款16-谨记80-20法则"><a href="#条款16-谨记80-20法则" class="headerlink" title="条款16 谨记80-20法则"></a>条款16 谨记80-20法则</h3><p>这一条款说明影响程序运行效率的代码一般只占总代码的20%，使用程序分析器分析出造成性能瓶颈的对应代码。</p>
 <h3 id="条款17-考虑使用lazy-evaluation（缓式评估）"><a href="#条款17-考虑使用lazy-evaluation（缓式评估）" class="headerlink" title="条款17 考虑使用lazy evaluation（缓式评估）"></a>条款17 考虑使用lazy evaluation（缓式评估）</h3><p>缓式评估的思想是延缓运算，知道必须要的时候。对于<strong>你的软件被要求执行某些计算，而那么计算其实可以避免</strong>的场景，缓式评估有一定效率提升。书中举例说明了缓式评估可以提高效率的四个场景：</p>
 <ul>
@@ -272,58 +271,178 @@
     
     
 
-    <footer class="post-footer">
+      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
           </div>
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/07/28/%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%BF%90%E7%AE%97/" rel="prev" title="【算法模版】高精度运算">
-                  <i class="fa fa-chevron-left"></i> 【算法模版】高精度运算
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/08/09/%E3%80%8AMore-Effective-C-%E3%80%8B-%E6%8A%80%E6%9C%AF/" rel="next" title="【读书笔记】《More-Effective-C++》-技术">
-                  【读书笔记】《More-Effective-C++》-技术 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/28/%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%BF%90%E7%AE%97/" rel="prev" title="【算法模版】高精度运算">
+      <i class="fa fa-chevron-left"></i> 【算法模版】高精度运算
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/09/%E3%80%8AMore-Effective-C-%E3%80%8B-%E6%8A%80%E6%9C%AF/" rel="next" title="【读书笔记】《More-Effective-C++》-技术">
+      【读书笔记】《More-Effective-C++》-技术 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8AMore-Effective-C-%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">《More-Effective-C++》读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E7%8E%87"><span class="nav-number">1.1.</span> <span class="nav-text">效率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE16-%E8%B0%A8%E8%AE%B080-20%E6%B3%95%E5%88%99"><span class="nav-number">1.1.1.</span> <span class="nav-text">条款16 谨记80-20法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE17-%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8lazy-evaluation%EF%BC%88%E7%BC%93%E5%BC%8F%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">条款17 考虑使用lazy evaluation（缓式评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE18-%E5%88%86%E6%9C%9F%E6%91%8A%E8%BF%98%E9%A2%84%E6%9C%9F%E7%9A%84%E8%AE%A1%E7%AE%97%E6%88%90%E6%9C%AC"><span class="nav-number">1.1.3.</span> <span class="nav-text">条款18 分期摊还预期的计算成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE19-%E4%BA%86%E8%A7%A3%E4%B8%B4%E6%97%B6%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="nav-number">1.1.4.</span> <span class="nav-text">条款19 了解临时对象的来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE20-%E5%8D%8F%E5%8A%A9%E5%AE%8C%E6%88%90%E2%80%9D%E8%BF%94%E5%9B%9E%E5%80%BC%E4%BC%98%E5%8C%96-RVO-%E2%80%9D"><span class="nav-number">1.1.5.</span> <span class="nav-text">条款20 协助完成”返回值优化(RVO)”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE21-%E5%88%A9%E7%94%A8%E9%87%8D%E8%BD%BD%E6%8A%80%E6%9C%AF-overload-%E4%BE%BF%E9%9D%A2%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-implict-type-coversions"><span class="nav-number">1.1.6.</span> <span class="nav-text">条款21 利用重载技术(overload)便面隐式类型转换(implict type coversions)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE22-%E8%80%83%E8%99%91%E4%BB%A5%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%A4%8D%E5%90%88%E5%BD%A2%E5%BC%8F-op-x3D-%E5%8F%96%E4%BB%A3%E5%85%B6%E7%8B%AC%E8%BA%AB%E5%BD%A2%E5%BC%8F-op"><span class="nav-number">1.1.7.</span> <span class="nav-text">条款22 考虑以操作符复合形式(op&#x3D;)取代其独身形式(op)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE23-%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E5%BA%93"><span class="nav-number">1.1.8.</span> <span class="nav-text">条款23 考虑使用其他程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E6%AC%BE24-%E4%BA%86%E8%A7%A3virtual-functions-multiple-inheritance-virtual-base-classes-runtime-type-identification%E7%9A%84%E6%88%90%E6%9C%AC"><span class="nav-number">1.1.9.</span> <span class="nav-text">条款24 了解virtual functions, multiple inheritance, virtual base classes, runtime type identification的成本</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="我家的猫叫蛋蛋"
+      src="/images/bigHead.jpg">
+  <p class="site-author-name" itemprop="name">我家的猫叫蛋蛋</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-
-
-
-
-
-
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
-  </main>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDTR" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDTR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/dazhi_jiang@163.com" title="E-Mail → dazhi_jiang@163.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
 
-  <footer class="footer">
-    <div class="footer-inner">
 
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
 
 <div class="copyright">
+  
   &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">我家的猫叫蛋蛋</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-    </div>
-  </footer>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
 
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
 
   
 
@@ -331,11 +450,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
   
 
-
-
-
+  
 
 </body>
 </html>
